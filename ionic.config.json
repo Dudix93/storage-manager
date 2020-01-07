@@ -1,5 +1,7 @@
 {
   "name": "storage-manager",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
