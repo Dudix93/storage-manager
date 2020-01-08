@@ -1,9 +1,69 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>AddItem</ion-title>
+    <ion-title>Add New Item</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="boxOrItem">
+      <ion-list-header>
+        Choose item type:
+      </ion-list-header>
+  
+      <ion-item>
+        <ion-label>Sub-box</ion-label>
+        <ion-radio value="box"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Item</ion-label>
+        <ion-radio value="item"></ion-radio>
+      </ion-item>
+  
+    </ion-radio-group>
+  </ion-list>
+  
+  <ng-container *ngIf = "boxOrItem === 'box'">
+    <ion-item>
+        <ion-label position = "stacked">Box name: {{ boxName.length }}/20</ion-label>
+        <ion-input [(ngModel)]="boxName" maxlength = 20 required = true></ion-input>
+    </ion-item>                                     
+    <ion-list>
+      <ion-radio-group [(ngModel)]="addItemToNewBox">
+        <ion-list-header>
+          Add new item to this sub-box?
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Yes</ion-label>
+          <ion-radio value="yes"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio value="no"></ion-radio>
+        </ion-item>
+    
+      </ion-radio-group>
+    </ion-list>
+  </ng-container>
 
+  <ng-container *ngIf = "boxOrItem === 'item' || addItemToNewBox === 'yes'">
+    
+    <ion-item>
+      <ion-label position = "stacked">Item name: {{ itemName.length }}/20</ion-label>
+      <ion-input [(ngModel)]="itemName" maxlength = 20 required = true></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position = "stacked">Item description: {{ itemDescription.length }}/50</ion-label>
+      <ion-textarea [(ngModel)]="itemDescription" maxlength = 50 autoGrow="true"></ion-textarea>
+    </ion-item>
+
+  </ng-container>
+
+  <ion-button expand = "full" size = "large" *ngIf = "(boxOrItem === 'box' && boxName.length > 0 && addItemToNewBox === 'no') || (boxOrItem === 'box' && boxName.length > 0 && itemName.length > 0) || (boxOrItem === 'item' && itemName.length > 0)" (click) = "addItem()">
+    Add 
+  </ion-button>
 </ion-content>
