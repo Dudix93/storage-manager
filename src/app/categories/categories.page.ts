@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Box } from '../../models/Box';
+import { ItemsPage } from '../items/items.page';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -15,7 +17,9 @@ export class CategoriesPage implements OnInit {
   constructor(
     private toastCtrl: ToastController,
     private storage: Storage,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private navCtrl: NavController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -57,6 +61,26 @@ export class CategoriesPage implements OnInit {
         ]
       });
       await alert.present();
+  }
+
+  showTheBox(box: Box) {
+    if (box.items.length === 0) {
+      this.showToast("This box is empty!");
+    }
+    else {
+      let items = box.items;
+      items.forEach(item => {
+        if (item.hasOwnProperty('name')) {
+          items[items.indexOf(item)] = item.name;
+        }
+      });
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+            'box_items': box.items
+        }
+    };
+      this.router.navigate(['items'], navigationExtras);
+    }
   }
 
   showToast(msg: string) {

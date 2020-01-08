@@ -40,8 +40,6 @@ export class AddItemPage implements OnInit {
   }
 
   async addItem() {
-    if (this.boxOrItem === 'item' || (this.boxOrItem === 'box' && (this.addItemToNewBox === 'no' || this.addItemToNewBox === undefined))) {
-      //adding only new item to existing box
       const alert = await this.alertCtrl.create({
         header: 'Where is this ' + this.boxOrItem + ' ?',
         inputs: this.boxes,
@@ -102,7 +100,6 @@ export class AddItemPage implements OnInit {
         ]
       });
       await alert.present();
-    }
   }
 
   showToast(msg: string) {
