@@ -25,8 +25,11 @@ export class AddItemPage implements OnInit {
     private alertCtrl: AlertController
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.storage.get('boxes').then((savedBoxes) => {
+        this.boxes = [];
         savedBoxes.forEach((box, index) => {
           this.boxes.push({
             name: box.name,

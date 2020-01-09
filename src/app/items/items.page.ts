@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-items',
@@ -16,7 +15,9 @@ export class ItemsPage implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.activatedRoute.queryParams.subscribe(passedBoxItems => {
       this.items = passedBoxItems.box_items;
     });

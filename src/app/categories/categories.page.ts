@@ -22,7 +22,11 @@ export class CategoriesPage implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
+    console.log('update boxes');
+    
     this.storage.get('boxes').then((savedBoxes) => {
       savedBoxes != null ?
         this.boxes = savedBoxes : 
