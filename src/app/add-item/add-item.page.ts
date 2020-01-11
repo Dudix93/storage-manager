@@ -43,6 +43,7 @@ export class AddItemPage implements OnInit {
   }
 
   async addItem() {
+    if (this.boxes.length > 0) {
       const alert = await this.alertCtrl.create({
         header: 'Where is this ' + this.boxOrItem + ' ?',
         inputs: this.boxes,
@@ -60,7 +61,6 @@ export class AddItemPage implements OnInit {
                 savedBoxes.then(boxes => {
                   boxes.forEach(box => {
                     if (box.name === boxChosen){
-                      console.log("items "+box.items);
                       try{
                         box.items.forEach(item => {
                           switch (this.boxOrItem) {
@@ -103,6 +103,10 @@ export class AddItemPage implements OnInit {
         ]
       });
       await alert.present();
+    }
+    else {
+      this.showToast("Nowhere to put it. Add BOX first!")
+    }
   }
 
   showToast(msg: string) {
