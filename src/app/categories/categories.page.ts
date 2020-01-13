@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController, AlertController, NavController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Box } from '../../models/Box';
 import { ItemsPage } from '../items/items.page';
@@ -18,7 +18,6 @@ export class CategoriesPage implements OnInit {
     private toastCtrl: ToastController,
     private storage: Storage,
     private alertCtrl: AlertController,
-    private navCtrl: NavController,
     private router: Router
   ) { }
 
@@ -30,6 +29,10 @@ export class CategoriesPage implements OnInit {
         this.boxes = savedBoxes : 
         this.storage.set('boxes', this.boxes);
     });
+  }
+
+  addItem() {
+    this.router.navigate(['add-item']);
   }
 
   async addBox() {

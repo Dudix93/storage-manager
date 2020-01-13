@@ -1,14 +1,28 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Boxes</ion-title>
-    <ion-buttons slot="primary">
-      <ion-icon slot="icon-only" name="add-circle-outline" (click)="addBox()"></ion-icon>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let box of boxes" (click)="showTheBox(box)">{{ box.name }}</ion-item>
+    <ion-item class='list-item' *ngFor="let box of boxes" (click)="showTheBox(box)">{{ box.name }}</ion-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  
+    <ion-fab-list side="top">
+      <ion-fab-button data-desc="Add Box">
+        <ion-icon name="cube" (click)="addBox()"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button data-desc="Add Item">
+        <ion-icon name="pricetag" (click)="addItem()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  
+  </ion-fab>
 </ion-content>

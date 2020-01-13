@@ -31,7 +31,7 @@ export class ItemsPage implements OnInit {
   }
 
   back() {
-    this.router.navigate(['tabs']);
+    this.router.navigate(['']);
   }
 
 }

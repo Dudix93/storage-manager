@@ -3,6 +3,7 @@ import { ToastController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Box } from '../../models/Box';
 import { Item } from '../../models/Item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-item',
@@ -22,7 +23,8 @@ export class AddItemPage implements OnInit {
   constructor(
     private toastCtrl: ToastController,
     private storage: Storage,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private router: Router
   ) { }
 
   ngOnInit() {}
@@ -40,6 +42,10 @@ export class AddItemPage implements OnInit {
           });
         });
     });
+  }
+
+  back() {
+    this.router.navigate(['']);
   }
 
   async addItem() {
