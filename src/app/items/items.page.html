@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Items</ion-title>
+    <ion-title>Items from {{ box.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-icon slot="icon-only" name="arrow-round-back" (click)="back()"></ion-icon>
     </ion-buttons>
@@ -9,13 +9,14 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item *ngFor="let item of box.items">
       <ion-grid>
         <ion-row>
-          <ion-col> {{ item.name }} </ion-col>
+          <ion-col *ngIf = "item.hasOwnProperty('items')" (click) = "showTheBox(item)"> {{ item.name }} </ion-col>
+          <ion-col *ngIf = "item.hasOwnProperty('description')" (click) = "showTheItem(item)"> {{ item.name }} </ion-col>
           <ion-col> 
-            <ion-icon *ngIf = "item.type == 'box'" name="cube"></ion-icon> 
-            <ion-icon *ngIf = "item.type == 'item'" name="pricetag"></ion-icon> 
+            <ion-icon *ngIf = "item.hasOwnProperty('items')" name="cube"></ion-icon> 
+            <ion-icon *ngIf = "item.hasOwnProperty('description')" name="pricetag"></ion-icon> 
         </ion-col>
         </ion-row>
       </ion-grid>

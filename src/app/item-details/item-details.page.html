@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon slot="icon-only" name="arrow-round-back" (click)="back()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label>{{ item.name }}</ion-label>
+    </ion-item>
+
+    <ion-card-content>
+      {{ item.description }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

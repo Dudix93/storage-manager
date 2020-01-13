@@ -69,13 +69,17 @@ export class CategoriesPage implements OnInit {
   }
 
   showTheBox(box: Box) {
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-            'box_id': this.boxes.indexOf(box)
-        }
-    };
-      this.router.navigate(['items'], navigationExtras);
-    // }
+    if (box.items.length === 0) {
+      this.showToast('This box is empty.');
+    }
+    else {
+      this.router.navigate(['items'], {
+        state: {
+          member: JSON.stringify(box),
+          type: 'reader'
+          }
+      });
+    }
   }
 
   showToast(msg: string) {
