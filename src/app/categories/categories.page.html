@@ -6,7 +6,15 @@
 
 <ion-content>
   <ion-list>
-    <ion-item class='list-item' *ngFor="let box of boxes" (click)="showTheBox(box)">{{ box.name }}</ion-item>
+    <ion-item class='list-item' *ngFor="let box of boxes">
+      <ion-grid>
+      <ion-row>
+        <ion-col size="10" (click)="showTheBox(box)"> {{ box.name }}</ion-col>
+        <ion-col size="1" (click)="editTheBox(box)"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col size="1" (click)="deleteTheBox(box)"><ion-icon name="trash"></ion-icon></ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end">

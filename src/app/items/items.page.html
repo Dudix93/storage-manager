@@ -12,11 +12,11 @@
     <ion-item *ngFor="let item of box.items">
       <ion-grid>
         <ion-row>
-          <ion-col *ngIf = "item.hasOwnProperty('items')" (click) = "showTheBox(item)"> {{ item.name }} </ion-col>
-          <ion-col *ngIf = "item.hasOwnProperty('description')" (click) = "showTheItem(item)"> {{ item.name }} </ion-col>
+          <ion-col size="10" *ngIf = "item.hasOwnProperty('items')" (click) = "showTheBox(item)"> {{ item.name }} </ion-col>
+          <ion-col size="10" *ngIf = "item.hasOwnProperty('description')" (click) = "showTheItem(item)"> {{ item.name }} </ion-col>
           <ion-col> 
-            <ion-icon *ngIf = "item.hasOwnProperty('items')" name="cube"></ion-icon> 
-            <ion-icon *ngIf = "item.hasOwnProperty('description')" name="pricetag"></ion-icon> 
+            <ion-icon size="2" *ngIf = "item.hasOwnProperty('items')" name="cube"></ion-icon> 
+            <ion-icon size="2" *ngIf = "item.hasOwnProperty('description')" name="pricetag"></ion-icon> 
         </ion-col>
         </ion-row>
       </ion-grid>
