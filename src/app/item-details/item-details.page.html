@@ -3,17 +3,35 @@
     <ion-buttons slot="start">
       <ion-icon slot="icon-only" name="arrow-round-back" (click)="back()"></ion-icon>
     </ion-buttons>
+    <ion-title *ngIf="edit === false">{{ item.name }}</ion-title>
+    <ion-item *ngIf="edit === true">
+      <ion-label position="floating">Item Name</ion-label>
+      <ion-input [(ngModel)]="item.name"></ion-input>
+    </ion-item>
+    <ion-buttons slot="end">
+      <ion-icon slot="icon-only" name="create" *ngIf="edit === false" (click)="editTheItem()"></ion-icon>
+      <ion-icon slot="icon-only" name="close-circle-outline" *ngIf="edit === true" (click)="editTheItem()"></ion-icon>
+      <ion-icon slot="icon-only" name="checkmark" *ngIf="edit === true" (click)="saveEdit()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-item>
-      <ion-label>{{ item.name }}</ion-label>
-    </ion-item>
-
-    <ion-card-content>
+  <ion-card *ngIf="edit === false">
+    <ion-card-content *ngIf="item.description != ''">
       {{ item.description }}
     </ion-card-content>
+    <ion-card-content *ngIf="item.description === ''">
+      No item description provided...
+    </ion-card-content>
   </ion-card>
+  <ion-card *ngIf="edit === true">
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Item Description</ion-label>
+        <ion-input [(ngModel)]="item.description"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>
